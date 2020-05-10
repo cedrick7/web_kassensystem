@@ -26,7 +26,17 @@ body {
 // Boxen -----------------------------
 
 .content {
-  .outerbox {
-    .inner-box {}
+  display: flex;
+  flex-direction: row;
+
+  .outer-box {
+    width: 33.33%;
+    border: 2px solid #000;
+
+    .inner-box {
+      border: 1px solid #88b900;
+    }
+
+    .product-box {}
   }
 }
