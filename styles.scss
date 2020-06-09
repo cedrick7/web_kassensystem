@@ -19,24 +19,58 @@ h3 {
 
 body {
   width: 100%;
-  min-width: 500px;
 }
 // Bilder -----------------------------
 // Texte -----------------------------
 // Boxen -----------------------------
 
 .content {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
-  .outer-box {
-    width: 33.33%;
+  .outer-box_left {
     border: 2px solid #000;
+    min-height: 100%;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 
-    .inner-box {
-      border: 1px solid #88b900;
+    .product-box {
+      display: flex;
+      flex-basis: calc(23% - 5px);
+      justify-content: center;
+      flex-direction: column;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      .product-button {
+        width: 100%;
+        padding: 20px 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .outer-box_right {
+    width: 30%;
+    border: 2px solid #000;
+    text-align: center;
+
+    .product-list {
+      min-height: 200px;
+      border: 1px solid #000;
     }
 
-    .product-box {}
+    .sum-list {
+      margin: 15px;
+    }
+
+    .checkout-box {
+      margin: 15px;
+    }
   }
 }
