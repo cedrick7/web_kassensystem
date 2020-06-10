@@ -33,7 +33,7 @@ body {
 
   .outer-box_left {
     min-height: 100%;
-    width: 65%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -52,14 +52,20 @@ body {
         margin-left: 10px;
         margin-right: 10px;
         border: 1px solid #000;
+        color: #000;
         text-align: center;
         text-decoration: none;
+
+        &:active,
+        &:hover {
+          background-color: #DDDADA;
+        }
       }
     }
   }
 
   .outer-box_right {
-    width: 35%;
+    width: 20%;
     border: 2px solid #000;
     text-align: center;
 
@@ -68,10 +74,12 @@ body {
       border: 1px solid #000;
 
       #product-list {
-        min-height: 200px;
+        min-height: 320px;
         list-style-type: none;
 
         li {
+          margin-left: -40px;
+          text-align: center;
           text-decoration: none;
           letter-spacing: 3px;
         }
@@ -86,7 +94,15 @@ body {
       margin: 15px;
 
       a {
+        color: #000;
+        text-align: center;
         text-decoration: none;
+        padding: 10px;
+
+        &:active,
+        &:hover {
+          background-color: #DDDADA;
+        }
       }
     }
   }
