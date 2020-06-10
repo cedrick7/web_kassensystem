@@ -5,14 +5,20 @@
   <meta charset="utf-8" />
   <title>Kassensystem</title>
   <link rel="stylesheet" href="styles.min.css" />
+  <script type="text/javascript" src="styles.js"></script>
 </head>
 
 <body>
   <div class="content">
     <div class="outer-box_left" id="box-1">
+
       <div class="product-box" id="product-01" attribute="">
-        <button class="product-button" id="product-button-01" type="submit">click here...</button>
+        <a href="javascript:;" onclick="addItem()">
+          <p id="product-01_name">produktname</p>
+          <p id="product-01_price">33.39€</p>
+        </a>
       </div>
+
       <div class="product-box" id="product-02" attribute=""><button class="product-button" id="product-button-02" type="submit">click here...</button></div>
       <div class="product-box" id="product-03" attribute=""><button class="product-button" id="product-button-03" type="submit">click here...</button></div>
       <div class="product-box" id="product-04" attribute=""><button class="product-button" id="product-button-04" type="submit">click here...</button></div>
@@ -28,8 +34,8 @@
       <div class="product-box" id="product-14" attribute=""><button class="product-button" id="product-button-14" type="submit">click here...</button></div>
     </div>
     <div class="outer-box_right" id="box-2">
-      <div class="product-list">
-        <ul>
+      <div class="">
+        <ul id="product-list">
           <li>Produkte ausgewählt</li>
           <li>Produkte ausgewählt</li>
           <li>Produkte ausgewählt</li>
@@ -37,7 +43,7 @@
         </ul>
       </div>
       <div class="sum-list">
-        Preis Gesamt
+        <p>Preis Gesamt = <span id="price_result">0.00</span>€</p>
       </div>
       <div class="checkout-box">
         <button id="sumbit" type="submit">send</button>
@@ -45,6 +51,58 @@
     </div>
 
   </div>
+
+  <script>
+    function addItem() {
+      // finde alle wichtigen Elemente
+      var list = document.getElementById("product-list");
+      var result = document.getElementById("price_result");
+
+      // werte der produkte herausfinden und in variablen speichern
+      var product_item = document.getElementById("product-01");
+      var product_name = (document.getElementById("product-01_name").innerHTML).toString();
+      var product_price_str = (document.getElementById("product-01_price").innerHTML).toString();
+      var product_price = Number(product_price_str.replace(/[^0-9.-]+/g, ""));
+      var price_result_str = (document.getElementById("price_result").innerHTML).toString();
+      var price_result = Number(price_result_str.replace(/[^0-9.-]+/g, ""));
+
+      // array für ausgewählte produkte erstellen
+      var cart = [
+        [1, "Keine Produkte ausgewählt!", 0.00]
+      ]
+
+      // ausgewählte produkte zum array hinzufügen
+      cart.push([1, product_name, product_price]);
+
+      // ausgewählte produkte zum warenkorb hinzufügen und gesamtpreis anpassen
+      for (var i = 1; i <= cart.length - 1; i++) {
+        var productCount = (cart[i][0]).toString();
+        var productName = cart[i][1];
+        var productPrice = (cart[i][2]).toString();
+        var product = productCount + "x " + productName + ", " + productPrice + "€";
+        console.log(product);
+        price_result += cart[i][2];
+
+        // erstelle ein neues Element li, das später in unsere Liste aufgenommen wird
+        var item = document.createElement("li");
+
+        // erstelle eine Textstelle für unser Element und trage den Wert unseres Inputs
+        item.appendChild(document.createTextNode(product));
+
+        // Element zu der Liste hinzufügen
+        list.appendChild(item);
+
+        // gesamtpreis anpassen
+        document.getElementById("price_result").innerHTML = price_result;
+
+        // finde alle Duplikate
+        let findDuplicates = cart => cart.filter((item, index) => cart.indexOf(item) != index)
+        console.log(findDuplicates(strArray)) // All duplicates
+        console.log([...new Set(findDuplicates(strArray))]) // Unique duplicates
+      }
+    }
+  </script>
+
 </body>
 
 </html>
