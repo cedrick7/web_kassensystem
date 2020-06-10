@@ -11,98 +11,70 @@
 <body>
   <div class="content">
     <div class="outer-box_left" id="box-1">
-
-      <div class="product-box" id="product-01" attribute="">
-        <a href="javascript:;" onclick="addItem()">
-          <p id="product-01_name">produktname</p>
-          <p id="product-01_price">33.39€</p>
-        </a>
-      </div>
-
-      <div class="product-box" id="product-02" attribute=""><button class="product-button" id="product-button-02" type="submit">click here...</button></div>
-      <div class="product-box" id="product-03" attribute=""><button class="product-button" id="product-button-03" type="submit">click here...</button></div>
-      <div class="product-box" id="product-04" attribute=""><button class="product-button" id="product-button-04" type="submit">click here...</button></div>
-      <div class="product-box" id="product-05" attribute=""><button class="product-button" id="product-button-05" type="submit">click here...</button></div>
-      <div class="product-box" id="product-06" attribute=""><button class="product-button" id="product-button-06" type="submit">click here...</button></div>
-      <div class="product-box" id="product-07" attribute=""><button class="product-button" id="product-button-07" type="submit">click here...</button></div>
-      <div class="product-box" id="product-08" attribute=""><button class="product-button" id="product-button-08" type="submit">click here...</button></div>
-      <div class="product-box" id="product-09" attribute=""><button class="product-button" id="product-button-09" type="submit">click here...</button></div>
-      <div class="product-box" id="product-10" attribute=""><button class="product-button" id="product-button-10" type="submit">click here...</button></div>
-      <div class="product-box" id="product-11" attribute=""><button class="product-button" id="product-button-11" type="submit">click here...</button></div>
-      <div class="product-box" id="product-12" attribute=""><button class="product-button" id="product-button-12" type="submit">click here...</button></div>
-      <div class="product-box" id="product-13" attribute=""><button class="product-button" id="product-button-13" type="submit">click here...</button></div>
-      <div class="product-box" id="product-14" attribute=""><button class="product-button" id="product-button-14" type="submit">click here...</button></div>
+      <div class="product-box" id="product-01" attribute=""><a href="#" onclick="addToCart('produkt 1', 9.99)">
+          <p id="product-01_name">produkt 1</p>
+          <p id="product-01_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-02" attribute=""><a href="#" onclick="addToCart('produkt 2', 9.99)">
+          <p id="product-02_name">produkt 2</p>
+          <p id="product-02_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-03" attribute=""><a href="#" onclick="addToCart('produkt 3', 9.99)">
+          <p id="product-03_name">produkt 3</p>
+          <p id="product-03_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-04" attribute=""><a href="#" onclick="addToCart('produkt 4', 9.99)">
+          <p id="product-04_name">produkt 4</p>
+          <p id="product-04_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-05" attribute=""><a href="#" onclick="addToCart('produkt 5', 9.99)">
+          <p id="product-05_name">produkt 5</p>
+          <p id="product-05_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-06" attribute=""><a href="#" onclick="addToCart('produkt 6', 9.99)">
+          <p id="product-06_name">produkt 6</p>
+          <p id="product-06_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-07" attribute=""><a href="#" onclick="addToCart('produkt 7', 9.99)">
+          <p id="product-07_name">produkt 7</p>
+          <p id="product-07_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-08" attribute=""><a href="#" onclick="addToCart('produkt 8', 9.99)">
+          <p id="product-08_name">produkt 8</p>
+          <p id="product-08_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-09" attribute=""><a href="#" onclick="addToCart('produkt 9', 9.99)">
+          <p id="product-09_name">produkt 9</p>
+          <p id="product-09_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-10" attribute=""><a href="#" onclick="addToCart('produkt 10', 9.99)">
+          <p id="product-10_name">produkt 10</p>
+          <p id="product-10_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-11" attribute=""><a href="#" onclick="addToCart('produkt 11', 9.99)">
+          <p id="product-11_name">produkt 11</p>
+          <p id="product-11_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-11" attribute=""><a href="#" onclick="addToCart('produkt 12', 9.99)">
+          <p id="product-12_name">produkt 12</p>
+          <p id="product-12_price">9.99€</p>
+        </a></div>
     </div>
     <div class="outer-box_right" id="box-2">
-      <div class="">
+      <div class="product-cart">
         <ul id="product-list">
-          <li>Produkte ausgewählt</li>
-          <li>Produkte ausgewählt</li>
-          <li>Produkte ausgewählt</li>
-          <li>Produkte ausgewählt</li>
+          <li id="product-list_placeholder-item"></li>
         </ul>
       </div>
       <div class="sum-list">
         <p>Preis Gesamt = <span id="price_result">0.00</span>€</p>
       </div>
       <div class="checkout-box">
-        <button id="sumbit" type="submit">send</button>
+        <a href="" id="sumbit">zur Kasse gehen</a>
       </div>
     </div>
 
   </div>
-
-  <script>
-    function addItem() {
-      // finde alle wichtigen Elemente
-      var list = document.getElementById("product-list");
-      var result = document.getElementById("price_result");
-
-      // werte der produkte herausfinden und in variablen speichern
-      var product_item = document.getElementById("product-01");
-      var product_name = (document.getElementById("product-01_name").innerHTML).toString();
-      var product_price_str = (document.getElementById("product-01_price").innerHTML).toString();
-      var product_price = Number(product_price_str.replace(/[^0-9.-]+/g, ""));
-      var price_result_str = (document.getElementById("price_result").innerHTML).toString();
-      var price_result = Number(price_result_str.replace(/[^0-9.-]+/g, ""));
-
-      // array für ausgewählte produkte erstellen
-      var cart = [
-        [1, "Keine Produkte ausgewählt!", 0.00]
-      ]
-
-      // ausgewählte produkte zum array hinzufügen
-      cart.push([1, product_name, product_price]);
-
-      // ausgewählte produkte zum warenkorb hinzufügen und gesamtpreis anpassen
-      for (var i = 1; i <= cart.length - 1; i++) {
-        var productCount = (cart[i][0]).toString();
-        var productName = cart[i][1];
-        var productPrice = (cart[i][2]).toString();
-        var product = productCount + "x " + productName + ", " + productPrice + "€";
-        console.log(product);
-        price_result += cart[i][2];
-
-        // erstelle ein neues Element li, das später in unsere Liste aufgenommen wird
-        var item = document.createElement("li");
-
-        // erstelle eine Textstelle für unser Element und trage den Wert unseres Inputs
-        item.appendChild(document.createTextNode(product));
-
-        // Element zu der Liste hinzufügen
-        list.appendChild(item);
-
-        // gesamtpreis anpassen
-        document.getElementById("price_result").innerHTML = price_result;
-
-        // finde alle Duplikate
-        let findDuplicates = cart => cart.filter((item, index) => cart.indexOf(item) != index)
-        console.log(findDuplicates(strArray)) // All duplicates
-        console.log([...new Set(findDuplicates(strArray))]) // Unique duplicates
-      }
-    }
-  </script>
-
 </body>
 
 </html>
