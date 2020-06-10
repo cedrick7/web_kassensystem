@@ -6,15 +6,7 @@ p {
   font-size: 1em;
   font-weight: 300;
   text-indent: 0;
-}
-
-h1 {
-  font-family: 'Lobster Two', cursive;
-  font-size: 2em;
-}
-
-h3 {
-  font-family: 'Open Sans', sans-serif;
+  color: #000;
 }
 
 body {
@@ -23,6 +15,11 @@ body {
 // Bilder -----------------------------
 // Texte -----------------------------
 // Boxen -----------------------------
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
 .content {
   width: 100%;
@@ -102,6 +99,29 @@ body {
         &:active,
         &:hover {
           background-color: #DDDADA;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  margin-top: 40px;
+
+  p {
+    text-align: center;
+
+    .footer_item {
+      padding: 50px;
+
+      .style_as_link {
+        text-decoration: underline;
+        color: #000;
+
+        &:active,
+        &:hover {
+          cursor: pointer;
+          background-color: #999;
         }
       }
     }
