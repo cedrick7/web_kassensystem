@@ -14,11 +14,12 @@
   </header>
   <div class="content">
     <section class="outer-box_left" id="box-1">
-      <div class="product-box" attribute=""><a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-01" class="product" name="product">
-          <p id="product-01_name">produkt 1</p>
-          <p id="product-01_price">9.99€</p>
+      <div class="product-box" attribute=""><a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-01" class="product">
+          <form action="kasse.php" method="post">
+            <input type="submit" name="Laugenbrezel" value="Laugenbrezel" onclick="select()" />
+          </form>
         </a></div>
-      <div class="product-box" id="product-02" attribute=""><a href="#" onclick="addToCart('produkt 2', 9.99)" name="product">
+      <div class="product-box" id="product-02" attribute=""><a href="#" onclick="addToCart('produkt 2', 9.99)" name="product" formaction="kasse.php">
           <p id="product-02_name">produkt 2</p>
           <p id="product-02_price">9.99€</p>
         </a></div>
