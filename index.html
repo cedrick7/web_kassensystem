@@ -79,6 +79,38 @@
           <p id="product-16_name">produkt 16</p>
           <p id="product-16_price">9.99€</p>
         </a></div>
+      <div class="product-box" id="product-13" attribute=""><a href="#" onclick="addToCart('produkt 13', 9.99)">
+          <p id="product-13_name">produkt 13</p>
+          <p id="product-13_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-14" attribute=""><a href="#" onclick="addToCart('produkt 14', 9.99)">
+          <p id="product-14_name">produkt 14</p>
+          <p id="product-14_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-15" attribute=""><a href="#" onclick="addToCart('produkt 15', 9.99)">
+          <p id="product-15_name">produkt 15</p>
+          <p id="product-15_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-16" attribute=""><a href="#" onclick="addToCart('produkt 16', 9.99)">
+          <p id="product-16_name">produkt 16</p>
+          <p id="product-16_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-13" attribute=""><a href="#" onclick="addToCart('produkt 13', 9.99)">
+          <p id="product-13_name">produkt 13</p>
+          <p id="product-13_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-14" attribute=""><a href="#" onclick="addToCart('produkt 14', 9.99)">
+          <p id="product-14_name">produkt 14</p>
+          <p id="product-14_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-15" attribute=""><a href="#" onclick="addToCart('produkt 15', 9.99)">
+          <p id="product-15_name">produkt 15</p>
+          <p id="product-15_price">9.99€</p>
+        </a></div>
+      <div class="product-box" id="product-16" attribute=""><a href="test.php" onclick="addToCart('produkt 16', 9.99)">
+          <p id="product-16_name">produkt 16</p>
+          <p id="product-16_price">9.99€</p>
+        </a></div>
     </section>
     <section class="outer-box_right" id="box-2">
       <div class="product-cart">
@@ -91,6 +123,42 @@
       </div>
       <div class="checkout-box">
         <a href="" id="sumbit">zur Kasse gehen</a>
+      </div>
+      <div class="calculator calc-page">
+        <form name="calculator" id="calculator">
+          <input type="text" id="screen" name="screen" placeholder="0" disabled readonly>
+          <div class="calc-operators">
+            <input type="button" class="key operator" id="add" value="+" onclick="display_on_screen('+')">
+            <input type="button" class="key number" id="sub" value="–" onclick="display_on_screen('-')">
+            <input type="button" class="key number" id="mult" value="×" onclick="display_on_screen('*')">
+            <input type="button" class="key number" id="div" value="÷" onclick="display_on_screen('/')">
+          </div>
+          <div class="keys">
+            <div class="row-numbers">
+              <input type="button" class="key number" id="one" value="1" onclick="display_on_screen('1')">
+              <input type="button" class="key number" id="two" value="2" onclick="display_on_screen('2')">
+              <input type="button" class="key number" id="three" value="3" onclick="display_on_screen('3')">
+            </div>
+            <div class="row-numbers">
+              <input type="button" class="key number" id="four" value="4" onclick="display_on_screen('4')">
+              <input type="button" class="key number" id="five" value="5" onclick="display_on_screen('5')">
+              <input type="button" class="key number" id="six" value="6" onclick="display_on_screen('6')">
+            </div>
+            <div class="row-numbers">
+              <input type="button" class="key number" id="seven" value="7" onclick="display_on_screen('7')">
+              <input type="button" class="key number" id="eight" value="8" onclick="display_on_screen('8')">
+              <input type="button" class="key number" id="nine" value="9" onclick="display_on_screen('9')">
+            </div>
+            <div class="row-numbers">
+              <input type="button" class="key number" id="decimal" value="." onclick="display_on_screen('.')">
+              <input type="button" class="key number" id="zero" value="0" onclick="display_on_screen('0')">
+              <button type="button" class="key number" id="clear" value=" " onclick="clear_screen()">Del</button>
+            </div>
+            <div class="key result" id="result" onclick="calculate_the_result()">
+              <span>=</span>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   </div>
