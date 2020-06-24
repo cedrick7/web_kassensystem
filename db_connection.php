@@ -2,9 +2,9 @@
 // Database Connection
 
 $servername = "https://hosting.iem.thm.de/phpmyadmin/";
-$username = "jfhs38";
-$password = "5Zcxh4eRqyRhwPaG";
-$dbname = "jfhs38_1";
+$username = "cacf23";
+$password = "1IZPvHarqNgkRyjZ";
+$dbname = "cacf23_1";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 global $conn;
@@ -16,5 +16,4 @@ if (mysqli_connect_error()) {
 
   } //else{
     //  echo "Database connected...";
-
 //  }
