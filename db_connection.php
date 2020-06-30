@@ -1,14 +1,18 @@
 <?php
 // Database Connection
 
-$servername = "https://hosting.iem.thm.de/phpmyadmin/";
-$username = "cacf23";
-$password = "1IZPvHarqNgkRyjZ";
-$dbname = "cacf23_1";
+// $servername = "localhost";
+// $username = "cacf23";
+// $password = "1IZPvHarqNgkRyjZ";
+// $dbname = "cacf23_1";
+
+$dbServername = "localhost";
+$dbUsername   = "root";
+$dbPassword   = "";
+$dbName       = "kassensystem";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 global $conn;
-
 
 // Check connection
 if (mysqli_connect_error()) {

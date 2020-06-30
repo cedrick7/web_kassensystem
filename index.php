@@ -22,73 +22,84 @@ if(isset($_POST['Productbutton'])){
    <meta charset="utf-8" />
    <title>Kassensystem</title>
    <link rel="stylesheet" href="styles.min.css" />
-   <script type="text/javascript" src="styles.js"></script>
+   <script type="text/javascript" src="script.js"></script>
  </head>
 
  <body>
    <header>
-     <h1>Kassensystem von Cedi und Jerry</h>
-   </header>
+   <h1>Kassensystem von Cedi und Jerry</h1>
+   <div>
+     <div class="change_view">
+       <button id="fullscreen_on" onclick="enterFullscreen(document.documentElement)">Den Vollbildmodus starten <i class="fas fa-expand-alt"></i></button>
+       <button id="fullscreen_off" onclick="exitFullscreen()">Den Vollbildmodus verlassen <i class="fas fa-compress-alt"></i></button>
+     </div>
+   </div>
+ </header>
    <div class="content">
      <section class="outer-box_left" id="box-1">
+       <form action="generate_cashbox.php">
+            <input id="load_data" type="submit" name="load_data" value="load_data" onclick="generatebuttons()" />
+        </form>
+
+
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-01" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-1" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Laugenbretzel">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-02" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-2" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Weizen-Mischbrot 250g">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-03" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-3" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Roggen-Mischbrot 250g">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-04" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-4" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Gutsherren-Brot 500g">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-05" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-5" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Kosakenbrot 750 gg">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-06" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-6" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Laugenbretzel">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-07" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-7" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Fit-Berrybrot 500g">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-08" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-8" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="Milchbrötchen">
            </form>
          </a>
        </div>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-09" class="product">
+         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-9" class="product">
            <form method="post">
              <input type="submit" name="Productbutton" value="FitBerrybrötchen">
            </form>
@@ -212,40 +223,31 @@ if(isset($_POST['Productbutton'])){
        <div class="checkout-box">
          <a href="" id="sumbit">zur Kasse gehen</a>
        </div>
-       <div class="calculator calc-page">
-         <form name="calculator" id="calculator">
-           <input type="text" id="screen" name="screen" placeholder="0" disabled readonly>
-           <div class="calc-operators">
-             <input type="button" class="key operator" id="add" value="+" onclick="display_on_screen('+')">
-             <input type="button" class="key number" id="sub" value="–" onclick="display_on_screen('-')">
-             <input type="button" class="key number" id="mult" value="×" onclick="display_on_screen('*')">
-             <input type="button" class="key number" id="div" value="÷" onclick="display_on_screen('/')">
-           </div>
-           <div class="keys">
-             <div class="row-numbers">
-               <input type="button" class="key number" id="one" value="1" onclick="display_on_screen('1')">
-               <input type="button" class="key number" id="two" value="2" onclick="display_on_screen('2')">
-               <input type="button" class="key number" id="three" value="3" onclick="display_on_screen('3')">
-             </div>
-             <div class="row-numbers">
-               <input type="button" class="key number" id="four" value="4" onclick="display_on_screen('4')">
-               <input type="button" class="key number" id="five" value="5" onclick="display_on_screen('5')">
-               <input type="button" class="key number" id="six" value="6" onclick="display_on_screen('6')">
-             </div>
-             <div class="row-numbers">
-               <input type="button" class="key number" id="seven" value="7" onclick="display_on_screen('7')">
-               <input type="button" class="key number" id="eight" value="8" onclick="display_on_screen('8')">
-               <input type="button" class="key number" id="nine" value="9" onclick="display_on_screen('9')">
-             </div>
-             <div class="row-numbers">
-               <input type="button" class="key number" id="decimal" value="." onclick="display_on_screen('.')">
-               <input type="button" class="key number" id="zero" value="0" onclick="display_on_screen('0')">
-               <button type="button" class="key number" id="clear" value=" " onclick="clear_screen()">Del</button>
-             </div>
-             <div class="key result" id="result" onclick="calculate_the_result()">
-               <span>=</span>
-             </div>
-           </div>
+       <div class="calculator">
+         <form>
+           <input type="text" id="calc-display">
+           <br>
+           <input type="button" class="keys" value="7" onclick="addToScreen('7')">
+           <input type="button" class="keys" value="8" onclick="addToScreen('8')">
+           <input type="button" class="keys" value="9" onclick="addToScreen('9')">
+           <input type="button" class="keys" value="C" onclick="addToScreen('c')">
+           <input type="button" class="keys" value="CE" onclick="backspace()">
+           <br>
+           <input type="button" class="keys" value="4" onclick="addToScreen('4')">
+           <input type="button" class="keys" value="5" onclick="addToScreen('5')">
+           <input type="button" class="keys" value="6" onclick="addToScreen('6')">
+           <input type="button" class="keys" value="*" onclick="addToScreen('*')">
+           <input type="button" class="keys" value="/" onclick="addToScreen('/')">
+           <br>
+           <input type="button" class="keys" value="1" onclick="addToScreen('1')">
+           <input type="button" class="keys" value="2" onclick="addToScreen('2')">
+           <input type="button" class="keys" value="3" onclick="addToScreen('3')">
+           <input type="button" class="keys" value="+" onclick="addToScreen('+')">
+           <input type="button" class="keys" value="-" onclick="addToScreen('-')">
+           <br>
+           <input type="button" class="keys" id="key-zero" value="0" onclick="addToScreen('0')">
+           <input type="button" class="keys" value="." onclick="addToScreen('.')">
+           <input type="button" class="equal" id="key-result" value="=" onclick="result()">
          </form>
        </div>
      </section>
@@ -254,7 +256,7 @@ if(isset($_POST['Productbutton'])){
    <footer>
      <hr>
      </hr>
-     <p><span class="footer_item">Copyright 2020</span><span class="footer_item">Kontakt <span class="style_as_link">hier</span>.</span><span class="footer_item">Impressum <span class="style_as_link">hier</span>.</span><span
+     <p><span class="footer_item">Copyright 2020</span><span class="footer_item">Kontakt <a class="style_as_link" href="contact.html">hier</a>.</span><span class="footer_item">Impressum <span class="style_as_link">hier</span>.</span><span
          class="footer_item">Datenschutzhinweise <span class="style_as_link">hier</span>.</span></p>
    </footer>
  </body>

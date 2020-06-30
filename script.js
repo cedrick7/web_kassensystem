@@ -1,3 +1,69 @@
+// In den Vollbildmodus wechseln
+function enterFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  }
+
+  document.getElementById("fullscreen_on").style.display = "none";
+  document.getElementById("fullscreen_off").style.display = "block";
+}
+
+// Den Vollbildmodus verlassen
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+
+  document.getElementById("fullscreen_on").style.display = "block";
+  document.getElementById("fullscreen_off").style.display = "none";
+}
+
+
+// Funktionen des Taschenrechners
+
+// angeklickte Werte zum TR-Display hinzufügen
+function addToScreen(x) {
+  var box = document.getElementById("calc-display");
+  box.value += x;
+
+  // falls man "c" gedrückt hat, das TR-Display zurücksetzen
+  if (x == 'c') {
+    box.value = '';
+  }
+}
+
+// Ergebnis errechnen
+function result() {
+  var box = document.getElementById("calc-display");
+
+  x = box.value;
+  x = eval(x);
+  box.value = x;
+}
+
+// Letzten Wert des TR-Displays löschen
+function backspace() {
+  var box = document.getElementById("calc-display");
+
+  var number = box.value;
+  var len = number.length - 1;
+  var newnumber = number.substring(0, len);
+  box.value = newnumber;
+}
+
+
+// Produkte zum Warenkorb hinzufügen
+
 function addToCart(product_name, product_price) {
   // finde alle wichtigen Elemente
   var list = document.getElementById("product-list");
@@ -63,24 +129,4 @@ function overrideResult(price) {
 
   // gesamtpreis anpassen
   document.getElementById("price_result").innerHTML = Math.round((price_result + price) * 100) / 100;
-}
-
-
-
-
-// calculator
-const screen = document.getElementById('screen');
-
-function clear_screen() {
-  screen.value = " ";
-}
-
-function display_on_screen(x) {
-  screen.value += x;
-}
-
-function calculate_the_result() {
-  let val = screen.value;
-  val = eval(val);
-  screen.value = val;
 }
