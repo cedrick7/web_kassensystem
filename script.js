@@ -140,6 +140,6 @@ function generateBill() {
   sessionStorage.setItem("page1content", pageContent);
 
   var bill = window.open("");
-  bill.document.write("<!DOCTYPE html><html lang='de' dir='ltr'><head><meta charset='utf-8'/><title>bill</title></head><body><p>Rechnung vom <span id='date'></span><script>var today = new Date(); document.getElementById('date').innerHTML = today;</script><ul id='createdBill' style='list-style-type:none;'>" + sessionStorage.getItem('page1content') + "</ul></body></html>");
+  bill.document.write("<!DOCTYPE html><html lang='de' dir='ltr'><head><meta charset='utf-8'/><title>bill</title></head><body style='text-align:center;'><p>Rechnung vom <span id='date'></span><script>var today = new Date(); document.getElementById('date').innerHTML = today;</script><ul id='createdBill' style='list-style-type:none;'>" + sessionStorage.getItem('page1content') + "</ul><br></br><br></br><button onclick='window.print()' style='background-color:#dddada;color: #000;text-align: center;text-decoration: none;padding: 10px;'>Rechnung drucken</button></body></html>");
 
 }
