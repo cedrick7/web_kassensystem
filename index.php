@@ -227,7 +227,7 @@ if(isset($_POST['Productbutton'])){
        </div>
        <div class="remove-listItem">
          <form>
-           <input type="text" id="remove-this remove-input" placeholder="ID des zu entfernenden Produktes..."/>
+           <input type="text" id="remove-this" placeholder="ID des zu entfernenden Produktes..."/>
            <input type="button" id="remove-button" onclick="deleteCardItem()" value="Entfernen"/>
          </form>
        </div>

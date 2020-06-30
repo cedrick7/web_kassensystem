@@ -66,7 +66,7 @@ function backspace() {
 function createCart() {
   // produkt aus warenkorb entfernen button unanklickbar machen
   document.getElementById("remove-button").disabled = true;
-  document.getElementById("remove-input").disabled = true;
+  //document.getElementById("remove-input").disabled = true;
 
   // array für ausgewählte produkte erstellen
   var cart = [
@@ -193,27 +193,27 @@ function overrideResult(price, operator) {
   if (operator == "+") {
     document.getElementById("price_result").innerHTML = Math.round((price_result + price) * 100) / 100;
     document.getElementById("remove-button").disabled = false;
-    document.getElementById("remove-input").disabled = false;
+    //document.getElementById("remove-input").disabled = false;
   } else if (operator == "-") {
     document.getElementById("price_result").innerHTML = Math.round((price_result - price) * 100) / 100;
     var price_result_str = (document.getElementById("price_result").innerHTML).toString();
     var price_result = Number(price_result_str.replace(/[^0-9.-]+/g, ""));
     if (price_result == 0 | price_result == null) {
       document.getElementById("remove-button").disabled = true;
-      document.getElementById("remove-input").disabled = true;
+      //document.getElementById("remove-input").disabled = true;
     } else {
       document.getElementById("remove-button").disabled = false;
-      document.getElementById("remove-input").disabled = false;
+      //document.getElementById("remove-input").disabled = false;
     }
   } else {
     var price_result_str = (document.getElementById("price_result").innerHTML).toString();
     var price_result = Number(price_result_str.replace(/[^0-9.-]+/g, ""));
     if (price_result == 0 | price_result == null) {
       document.getElementById("remove-button").disabled = true;
-      document.getElementById("remove-input").disabled = true;
+      //document.getElementById("remove-input").disabled = true;
     } else {
       document.getElementById("remove-button").disabled = false;
-      document.getElementById("remove-input").disabled = false;
+      //document.getElementById("remove-input").disabled = false;
     }
   }
 }
