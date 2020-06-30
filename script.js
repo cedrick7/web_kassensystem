@@ -24,8 +24,8 @@ function exitFullscreen() {
     document.webkitExitFullscreen();
   }
 
-  document.getElementById("fullscreen_on").style.display = "block";
   document.getElementById("fullscreen_off").style.display = "none";
+  document.getElementById("fullscreen_on").style.display = "block";
 }
 
 
@@ -129,4 +129,17 @@ function overrideResult(price) {
 
   // gesamtpreis anpassen
   document.getElementById("price_result").innerHTML = Math.round((price_result + price) * 100) / 100;
+}
+
+
+// Rechnung als PDF speichern
+
+function generateBill() {
+
+  var pageContent = document.getElementById("product-list").innerHTML;
+  sessionStorage.setItem("page1content", pageContent);
+
+  var bill = window.open("");
+  bill.document.write("<!DOCTYPE html><html lang='de' dir='ltr'><head><meta charset='utf-8'/><title>bill</title></head><body><p>Rechnung vom <span id='date'></span><script>var today = new Date(); document.getElementById('date').innerHTML = today;</script><ul id='createdBill' style='list-style-type:none;'>" + sessionStorage.getItem('page1content') + "</ul></body></html>");
+
 }

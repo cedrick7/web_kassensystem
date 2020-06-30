@@ -11,56 +11,59 @@
 
 <body>
   <header>
-  <h1>Kassensystem von Cedi und Jerry</h1>
-  <div>
-    <div class="change_view">
-      <button id="fullscreen_on" onclick="enterFullscreen(document.documentElement)">Den Vollbildmodus starten <i class="fas fa-expand-alt"></i></button>
-      <button id="fullscreen_off" onclick="exitFullscreen()">Den Vollbildmodus verlassen <i class="fas fa-compress-alt"></i></button>
+    <h1>Kassensystem von Cedi und Jerry</h1>
+    <div>
+      <div class="change_view">
+        <button id="fullscreen_on" onclick="enterFullscreen(document.documentElement)">Den Vollbildmodus starten <i class="fas fa-expand-alt"></i></button>
+        <button id="fullscreen_off" onclick="exitFullscreen()">Den Vollbildmodus verlassen <i class="fas fa-compress-alt"></i></button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
   <div class="content">
     <section class="outer-box_left" id="box-1">
     </section>
     <section class="outer-box_right" id="box-2">
       <div class="product-cart">
         <ul id="product-list">
-          <li id="product-list_placeholder-item"></li>
+          <li id="product-list_placeholder-item">xxxxx</li>
         </ul>
       </div>
       <div class="sum-list">
         <p>Preis Gesamt = <span id="price_result">0.00</span>€</p>
       </div>
       <div class="checkout-box">
+
+        <a href="javascript:genPDF()" id="saveAsPDF" onclick="genPDF()">Rechnung erstellen</a>
+
         <a href="" id="sumbit">zur Kasse gehen</a>
       </div>
       <div class="calculator">
-  <form>
-    <input type="text" id="calc-display">
-    <br>
-    <input type="button" class="keys" value="7" onclick="addToScreen('7')">
-    <input type="button" class="keys" value="8" onclick="addToScreen('8')">
-    <input type="button" class="keys" value="9" onclick="addToScreen('9')">
-    <input type="button" class="keys" value="C" onclick="addToScreen('c')">
-    <input type="button" class="keys" value="CE" onclick="backspace()">
-    <br>
-    <input type="button" class="keys" value="4" onclick="addToScreen('4')">
-    <input type="button" class="keys" value="5" onclick="addToScreen('5')">
-    <input type="button" class="keys" value="6" onclick="addToScreen('6')">
-    <input type="button" class="keys" value="*" onclick="addToScreen('*')">
-    <input type="button" class="keys" value="/" onclick="addToScreen('/')">
-    <br>
-    <input type="button" class="keys" value="1" onclick="addToScreen('1')">
-    <input type="button" class="keys" value="2" onclick="addToScreen('2')">
-    <input type="button" class="keys" value="3" onclick="addToScreen('3')">
-    <input type="button" class="keys" value="+" onclick="addToScreen('+')">
-    <input type="button" class="keys" value="-" onclick="addToScreen('-')">
-    <br>
-    <input type="button" class="keys" id="key-zero" value="0" onclick="addToScreen('0')">
-    <input type="button" class="keys" value="." onclick="addToScreen('.')">
-    <input type="button" class="equal" id="key-result" value="=" onclick="result()">
-  </form>
-</div>
+        <form>
+          <input type="text" id="calc-display">
+          <br>
+          <input type="button" class="keys" value="7" onclick="addToScreen('7')">
+          <input type="button" class="keys" value="8" onclick="addToScreen('8')">
+          <input type="button" class="keys" value="9" onclick="addToScreen('9')">
+          <input type="button" class="keys" value="C" onclick="addToScreen('c')">
+          <input type="button" class="keys" value="CE" onclick="backspace()">
+          <br>
+          <input type="button" class="keys" value="4" onclick="addToScreen('4')">
+          <input type="button" class="keys" value="5" onclick="addToScreen('5')">
+          <input type="button" class="keys" value="6" onclick="addToScreen('6')">
+          <input type="button" class="keys" value="*" onclick="addToScreen('*')">
+          <input type="button" class="keys" value="/" onclick="addToScreen('/')">
+          <br>
+          <input type="button" class="keys" value="1" onclick="addToScreen('1')">
+          <input type="button" class="keys" value="2" onclick="addToScreen('2')">
+          <input type="button" class="keys" value="3" onclick="addToScreen('3')">
+          <input type="button" class="keys" value="+" onclick="addToScreen('+')">
+          <input type="button" class="keys" value="-" onclick="addToScreen('-')">
+          <br>
+          <input type="button" class="keys" id="key-zero" value="0" onclick="addToScreen('0')">
+          <input type="button" class="keys" value="." onclick="addToScreen('.')">
+          <input type="button" class="equal" id="key-result" value="=" onclick="result()">
+        </form>
+      </div>
     </section>
   </div>
 

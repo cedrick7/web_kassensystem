@@ -12,7 +12,7 @@ function generatebuttons()
    $button_name = $conn->query($sql);
    $button_preis = $conn->query($sql2);
 
-    echo '<div class="product-box" attribute="">
+    echo '<div class="product-box">
             <a href="#" onclick="addToCart(''<?=$button_name?>'', <?=$button_preis?>)" id="product-<?=$id?>" class="product">
               <form method="post">
                 <input type="submit" name="Productbutton-<?=$id?>" value= "<?=$button_name?>" />

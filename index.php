@@ -221,6 +221,7 @@ if(isset($_POST['Productbutton'])){
          <p>Preis Gesamt = <span id="price_result">0.00</span>€</p>
        </div>
        <div class="checkout-box">
+         <a href="javascript:generateBill()" id="saveAsPDF">Rechnung erstellen</a>
          <a href="" id="sumbit">zur Kasse gehen</a>
        </div>
        <div class="calculator">
