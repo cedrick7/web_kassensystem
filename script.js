@@ -11,8 +11,8 @@ function enterFullscreen(element) {
     element.webkitRequestFullscreen();
   }
 
-  document.getElementById("fullscreen_on").style.display = "none";
-  document.getElementById("fullscreen_off").style.display = "block";
+  document.getElementById("fullscreen-on").style.display = "none";
+  document.getElementById("fullscreen-off").style.display = "inline-block";
 }
 
 // Den Vollbildmodus verlassen
@@ -25,8 +25,8 @@ function exitFullscreen() {
     document.webkitExitFullscreen();
   }
 
-  document.getElementById("fullscreen_off").style.display = "none";
-  document.getElementById("fullscreen_on").style.display = "block";
+  document.getElementById("fullscreen-off").style.display = "none";
+  document.getElementById("fullscreen-on").style.display = "inline-block";
 }
 
 /* Taschenrechner ------------------------------------------------------------*/
@@ -64,6 +64,8 @@ function backspace() {
 /* Warenkorb, Rechnung -------------------------------------------------------*/
 // Warenkorb initialisieren
 function createCart() {
+  document.getElementById("fullscreen-off").style.display = "none";
+  document.getElementById("fullscreen-on").style.display = "inline-block";
   // produkt aus warenkorb entfernen button unanklickbar machen
   document.getElementById("remove-button").disabled = true;
   //document.getElementById("remove-input").disabled = true;
@@ -85,6 +87,10 @@ function createCart() {
 
 // Produkte zum Warenkorb hinzufügen
 function addToCart(product_id, product_name, product_price) {
+  console.log("test");
+  console.log(product_id);
+  console.log(product_name);
+
   // warenkorb aus localStorage laden
   var cart = JSON.parse(localStorage["cart"]);
 

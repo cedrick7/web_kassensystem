@@ -1,18 +1,77 @@
 <?php
+// datenbankverbindung
+$conn = new mysqli("localhost:8889","root","root","cashbox");
 
-if(isset($_POST['Productbutton'])){
-  $button = $_POST['Productbutton'];
+$sql = "SELECT * FROM product";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
 
-  include 'db_connection.php';
+$result = $stmt->get_result();
 
-  //SQL Statements
-  $sql = "Select Preis from Produkte where name is '$button' ";
-  $endprice += $conn->query($sql);
-  $sql = "Select * from Produkte where name is '$button' ";
-  $product = $conn->query($sql);
+//daten container
+$product_arr = Array();
 
-  echo $product;
+//packen alle daten in array
+while ($row = $result->fetch_assoc())
+{
+
+    $product_arr[] = $row;
+
 }
+
+// echo "<pre>";
+// var_dump($product_arr);
+// $stmt->close();
+// die();
+
+$stmt->close();
+
+
+$sql = "SELECT * FROM productcategory";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+//daten container
+$category_arr = Array();
+
+//packen alle daten in array
+while ($row = $result->fetch_assoc())
+{
+    $category_arr[] = $row;
+}
+
+$stmt->close();
+
+if(isset($_GET['category'])){
+
+  $sql = "SELECT * FROM product AS p
+          INNER JOIN productcategory AS c
+          ON p.category = c.ID AND c.ID = ?";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i",$_GET['category']);
+  $stmt->execute();
+
+  $result = $stmt->get_result();
+
+  //daten container
+  $product_arr = Array();
+
+  //packen alle daten in array
+  while ($row = $result->fetch_assoc())
+  {
+
+      $product_arr[] = $row;
+
+  }
+}
+
+ // echo "<pre>";
+ // var_dump($category_arr);
+ // die();
+
  ?>
 
  <!DOCTYPE html>
@@ -28,193 +87,42 @@ if(isset($_POST['Productbutton'])){
  <body>
    <header>
    <h1>Kassensystem von Cedi und Jerry</h1>
-   <div>
-     <div class="change_view">
-       <button id="fullscreen_on" onclick="enterFullscreen(document.documentElement)">Den Vollbildmodus starten <i class="fas fa-expand-alt"></i></button>
-       <button id="fullscreen_off" onclick="exitFullscreen()">Den Vollbildmodus verlassen <i class="fas fa-compress-alt"></i></button>
-     </div>
+   <button onclick="javascript:createCart();">INIT</button>
+   </header>
+   <div class="content">
+     <section class="outer-box_left" id="category_filter">
+       <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get">
+           <?php foreach($category_arr as $category) { ?>
+        <input type="radio" name="category" value="<?php echo $category['id']; ?>"
+         id="<?php echo $category['id']; ?>" <?php if($_GET['category'] == $category['id']) echo "checked"?> />
+        <label for="<?php echo $category['id']; ?>" style="display:inline"><?php echo $category['name']; ?></label>
+        <?php } ?>
+        <input type="submit" value="Suchen...">
+      </form>
+     </section>
+
+     <section class="outer-box_right" id="set-screen-option">
+         <button class="set-screenbutton" id="fullscreen-on" onclick="enterFullscreen(document.documentElement)">Den Vollbildmodus starten <i class="fas fa-expand-alt"></i></button>
+         <button class="set-screen-button" id="fullscreen-off" onclick="exitFullscreen()">Den Vollbildmodus verlassen <i class="fas fa-compress-alt"></i></button>
+     </section>
    </div>
- </header>
    <div class="content">
      <section class="outer-box_left" id="box-1">
-       <form action="generate_cashbox.php">
-            <input id="load_data" type="submit" name="load_data" value="load_data" onclick="generatebuttons()" />
-        </form>
+       <?php foreach ($product_arr as $product) {
+            // $id = $product['id'];
+            // $name = $product['name'];
+            // $price = $product['price'];
+        ?>
+       <div class="product-box" attribute="">
+         <a href="#" onclick="addToCart(<?php echo $product['id']; ?>, '<?php echo $product['name']; ?>', <?php echo $product['price']; ?>)"
+           id="product-<?php echo $product['id']; ?>" class="product">
+           <form method="post">
+             <input type="submit" name="Productbutton" value="<?php echo $product['name']; ?>" />
+           </form>
+         </a>
+       </div>
+       <?php } ?>
 
-        <div class="product-box" attribute="">
-          <a href="javascript:createCart();" onclick="" id="" class="product">
-            INIT
-          </a>
-        </div>
-
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-1" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(2, 'produkt 2', 9.99)" id="product-2" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Weizen-Mischbrot 250g">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(3, 'produkt 3', 9.99)" id="product-3" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Roggen-Mischbrot 250g">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-4" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Gutsherren-Brot 500g">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-5" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Kosakenbrot 750 gg">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-6" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-7" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Fit-Berrybrot 500g">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(1, 'produkt 1', 9.99)" id="product-8" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Milchbrötchen">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-9" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="FitBerrybrötchen">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-10" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Hamburgerweck">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-11" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Mohnweck">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-12" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Haferkrusti">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-13" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Partyweck">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-14" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenstange">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-15" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-16" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Puddingknoten">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-17" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Schokoschnecke">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-18" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Schokobrötchen">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-19" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Rosinenbrötchen">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-20" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Rosen Puddingkuchen">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-21" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Nuss Zopf">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-22" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-23" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
-       <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart('produkt 1', 9.99)" id="product-24" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="Laugenbretzel">
-           </form>
-         </a>
-       </div>
      </section>
      <section class="outer-box_right" id="box-2">
        <div class="product-cart">

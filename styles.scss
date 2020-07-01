@@ -28,26 +28,6 @@ header {
   h1 {
     text-align: center;
   }
-
-  div {
-    margin-left: 50px;
-
-    .change_view {
-      button {
-        width: 223px !important;
-        padding: 10px;
-        font-size: 13px;
-
-        i {
-          padding-left: 10px;
-        }
-      }
-
-      #fullscreen_off {
-        display: none;
-      }
-    }
-  }
 }
 
 .content {
@@ -94,6 +74,24 @@ header {
     width: 35%;
     border: 2px solid #000;
     text-align: center;
+
+    #set-screen-option {
+      .set-screen-button {
+        width: 223px !important;
+        padding: 10px;
+        font-size: 13px;
+
+        .fas {
+          padding-left: 10px;
+        }
+      }
+
+      #fullscreen-off {
+        display: 0;
+        color: red;
+        border-color: red;
+      }
+    }
 
     .product-cart {
       margin: 10px;

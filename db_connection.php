@@ -6,12 +6,12 @@
 // $password = "1IZPvHarqNgkRyjZ";
 // $dbname = "cacf23_1";
 
-$dbServername = "localhost";
+$dbServername = "localhost:8889";
 $dbUsername   = "root";
-$dbPassword   = "";
+$dbPassword   = "root";
 $dbName       = "kassensystem";
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+$conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 global $conn;
 
 // Check connection

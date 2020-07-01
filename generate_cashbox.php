@@ -1,4 +1,5 @@
 <?php
+/*
 function generatebuttons()
 {
  include 'db_connection.php';
@@ -24,3 +25,4 @@ $id = $id + 1;
   }
 }
 ?>
+*/
