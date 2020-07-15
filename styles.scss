@@ -11,6 +11,7 @@ p {
 
 body {
   width: 100%;
+  margin: 0;
 }
 // Bilder -----------------------------
 // Texte -----------------------------
@@ -241,5 +242,85 @@ footer {
 
   td {
     padding: 10px;
+  }
+}
+
+#body-login {
+  background-color: #3B66C2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #login {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-top: 10vh !important;
+    min-width: 800px;
+
+    #sign_left {
+      width: 400px;
+      height: 600px;
+      background-image: url("assets/img/cashbox.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 10px;
+    }
+
+    #sign_right {
+      width: 400px;
+      height: 600px;
+      margin: 10px 0;
+      text-align: center;
+
+      .description {
+        //margin-top: 5px;
+        padding-top: 20px;
+        padding-left: 5px;
+        margin-bottom: 55px;
+        font-size: 44px;
+        font-weight: bold;
+        font-family: Helvetica;
+      }
+
+      input {
+        width: 90%;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        border-radius: 10px;
+        background-color: #F0F1F4;
+        outline: none;
+      }
+
+      input::placeholder {
+        color: #2D3034;
+      }
+
+      input:focus {
+        background-color: #B5CBFA;
+      }
+
+      .sign-button {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #555;
+        border-radius: 10px;
+        background-color: #FFFFFF;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: #B5CBFA;
+          color: black;
+        }
+      }
+    }
   }
 }

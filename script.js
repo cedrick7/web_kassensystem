@@ -83,11 +83,13 @@ function createCart() {
   // // und andersrum:
   // let cart_deserialized = JSON.parse(localStorage.getItem("cart"));
   // console.log(cart_deserialized);
+
+  console.log("createCart()");
 }
 
 // Produkte zum Warenkorb hinzufügen
 function addToCart(product_id, product_name, product_price) {
-  console.log("test");
+  console.log("add product to card:");
   console.log(product_id);
   console.log(product_name);
 
@@ -95,7 +97,16 @@ function addToCart(product_id, product_name, product_price) {
   var cart = JSON.parse(localStorage["cart"]);
 
   // ausgewählte produkte zum array hinzufügen
-  cart.push([1, product_id, product_name, product_price]);
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i][2] == product_name) {
+      cart[i][1] += 1;
+      product_quantity = cart[i][1];
+      cart[i][3] += product_price;
+      break;
+    } else {
+      cart.push([product_quantity, product_id, product_name, product_price]);
+    }
+  }
 
   // warenkorb als localStorage speichern
   localStorage["cart"] = JSON.stringify(cart);
@@ -104,7 +115,7 @@ function addToCart(product_id, product_name, product_price) {
   overrideResult(product_price, "+"); // gesamtpreis aktualisieren
 }
 
-// produkt aus warenkorb löschen
+// Produkt aus warenkorb löschen
 function deleteCardItem() {
   // produkt-id filtern
   var product_id_str = document.getElementById("remove-this").value;
@@ -152,7 +163,7 @@ function deleteCardItem() {
   document.getElementById("remove-this").value = "";
 }
 
-// warenkorb anzeigen
+// Warenkorb anzeigen
 function getCart() {
   // finde alle wichtigen Elemente
   var list = document.getElementById("product-list");
@@ -167,11 +178,12 @@ function getCart() {
 
   // ausgewählte produkte zum warenkorb hinzufügen und gesamtpreis anpassen
   for (var i = 1; i <= cart.length - 1; i++) {
-    var productCount = (cart[i][0]).toString();
+    var productQuantity = (cart[i][0]).toString();
     var productId = cart[i][1];
     var productName = cart[i][2];
     var productPrice = (cart[i][3]).toString();
-    var product = productName + "  –  " + productPrice + "€       (id:" + productId + ")";
+    var product = productQuantity + "x " + productName + "  –  " + productPrice + "€  (id:" + productId + ")";
+    console.log("getCard():");
     console.log(product);
     var price_result = cart[i][3];
 
@@ -186,7 +198,7 @@ function getCart() {
   }
 }
 
-// gesamtpreis anpassen
+// Gesamtpreis anpassen
 function overrideResult(price, operator) {
   // finde alle wichtigen Elemente
   //var result = document.getElementById("price_result");
