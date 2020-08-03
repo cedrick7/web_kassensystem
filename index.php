@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['user'])) {
+  header("Location: login.php");
+  exit;
+}
+
 // datenbankverbindung
 $conn = new mysqli("localhost:8889","root","root","cashbox");
 
@@ -12,20 +19,11 @@ $result = $stmt->get_result();
 $product_arr = Array();
 
 //packen alle daten in array
-while ($row = $result->fetch_assoc())
-{
-
+while ($row = $result->fetch_assoc()) {
     $product_arr[] = $row;
-
 }
 
-// echo "<pre>";
-// var_dump($product_arr);
-// $stmt->close();
-// die();
-
 $stmt->close();
-
 
 $sql = "SELECT * FROM productcategory";
 $stmt = $conn->prepare($sql);
@@ -37,8 +35,7 @@ $result = $stmt->get_result();
 $category_arr = Array();
 
 //packen alle daten in array
-while ($row = $result->fetch_assoc())
-{
+while ($row = $result->fetch_assoc()) {
     $category_arr[] = $row;
 }
 
@@ -46,7 +43,7 @@ $stmt->close();
 
 if(isset($_GET['category'])){
 
-  $sql = "SELECT * FROM product AS p
+  $sql = "SELECT p.id, p.price, p.name, p.category FROM product AS p
           INNER JOIN productcategory AS c
           ON p.category = c.ID AND c.ID = ?";
 
@@ -60,18 +57,10 @@ if(isset($_GET['category'])){
   $product_arr = Array();
 
   //packen alle daten in array
-  while ($row = $result->fetch_assoc())
-  {
-
+  while ($row = $result->fetch_assoc()) {
       $product_arr[] = $row;
-
   }
 }
-
- // echo "<pre>";
- // var_dump($category_arr);
- // die();
-
  ?>
 
  <!DOCTYPE html>
@@ -82,22 +71,25 @@ if(isset($_GET['category'])){
    <title>Kassensystem</title>
    <link rel="stylesheet" href="styles.min.css" />
    <script type="text/javascript" src="script.js"></script>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
  </head>
 
  <body>
+
    <header>
-   <h1>Kassensystem von Cedi und Jerry</h1>
-   <button onclick="javascript:createCart();">INIT</button>
+   <h1>Kassensystem von Cedrick Candia Ferreira und Jeremy Fuchs</h1>
+   <a class="logout" href="logout.php">logout <i class="fas fa-sign-out-alt"></i></a>
    </header>
    <div class="content">
      <section class="outer-box_left" id="category_filter">
-       <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get">
+       <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get" style="margin-left: 20px;">
            <?php foreach($category_arr as $category) { ?>
-        <input type="radio" name="category" value="<?php echo $category['id']; ?>"
-         id="<?php echo $category['id']; ?>" <?php if($_GET['category'] == $category['id']) echo "checked"?> />
+        <input type="radio" name="category" style="margin-left: 20px;" value="<?php echo $category['id']; ?>"
+         id="<?php echo $category['id']; ?>" <?php if(!empty($_GET['category'])) if($_GET['category'] == $category['id']) echo "checked"?> />
         <label for="<?php echo $category['id']; ?>" style="display:inline"><?php echo $category['name']; ?></label>
         <?php } ?>
-        <input type="submit" value="Suchen...">
+        <input type="submit" value="Filtern..." style="margin-left: 20px;">
       </form>
      </section>
 
@@ -114,12 +106,12 @@ if(isset($_GET['category'])){
             // $price = $product['price'];
         ?>
        <div class="product-box" attribute="">
-         <a href="#" onclick="addToCart(<?php echo $product['id']; ?>, '<?php echo $product['name']; ?>', <?php echo $product['price']; ?>)"
-           id="product-<?php echo $product['id']; ?>" class="product">
-           <form method="post">
-             <input type="submit" name="Productbutton" value="<?php echo $product['name']; ?>" />
-           </form>
-         </a>
+             <a
+             id="product-<?php echo $product['id']; ?>"
+             class="product-button"
+             name="Productbutton"
+             onclick="return addToCart(<?php echo $product['id']; ?>, '<?php echo $product['name']; ?>', <?php echo $product['price']; ?>);" >
+             <?php echo $product['name']; ?> </a>
        </div>
        <?php } ?>
 
@@ -165,9 +157,10 @@ if(isset($_GET['category'])){
            <input type="button" class="keys" value="+" onclick="addToScreen('+')" />
            <input type="button" class="keys" value="-" onclick="addToScreen('-')" />
            <br></br>
-           <input type="button" class="keys" id="key-zero" value="0" onclick="addToScreen('0')" />
+           <input type="button" class="keys"  value="0" onclick="addToScreen('0')" />
            <input type="button" class="keys" value="." onclick="addToScreen('.')" />
            <input type="button" class="equal" id="key-result" value="=" onclick="result()" />
+           <a id="toCart" class="keys" onclick="return calculatorToCart();"><i class="fas fa-shopping-cart"></i></a>
          </form>
        </div>
      </section>
@@ -179,6 +172,7 @@ if(isset($_GET['category'])){
      <p><span class="footer_item">Copyright 2020</span><span class="footer_item">Kontakt <a class="style_as_link" href="contact.html">hier</a>.</span><span class="footer_item">Impressum <span class="style_as_link">hier</span>.</span><span
          class="footer_item">Datenschutzhinweise <span class="style_as_link">hier</span>.</span></p>
    </footer>
+   <script>createCart();</script>
  </body>
 
  </html>

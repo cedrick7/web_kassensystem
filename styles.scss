@@ -29,41 +29,64 @@ header {
   h1 {
     text-align: center;
   }
+
+  .logout {
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+
+    &::after,
+    &:active,
+    &:focus,
+    &:hover {
+      color: #000;
+      background-color: #DDDADA;
+    }
+  }
 }
 
 .content {
   width: 100%;
-  margin-left: -20px;
+  margin-left: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   .outer-box_left {
     //min-height: 100%;
+    height: auto;
     width: 65%;
+    padding-left: 10px;
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-items: flex-start;
+    flex-grow: 0;
+    flex-shrink: 1;
 
     .product-box {
       display: flex;
       flex-basis: calc(23% - 5px);
       justify-content: center;
-      flex-direction: column;
       margin-left: 10px;
       margin-right: 10px;
 
-      a {
+      .product-button {
         width: 100%;
-        padding: 20 10px;
+        font-size: 1.5vh;
+        padding: 20px 10px;
         margin-left: 10px;
         margin-right: 10px;
         border: 1px solid #000;
         color: #000;
         text-align: center;
         text-decoration: none;
+        cursor: pointer;
 
-        &:active,
+        &:focus,
         &:hover {
           background-color: #DDDADA;
         }
@@ -72,7 +95,9 @@ header {
   }
 
   .outer-box_right {
-    width: 35%;
+    width: 32%;
+    margin-top: 10px;
+    margin-right: 10px;
     border: 2px solid #000;
     text-align: center;
 
@@ -97,13 +122,19 @@ header {
     .product-cart {
       margin: 10px;
       border: 1px solid #000;
+      max-height: 320px;
+      max-height: 320px !important;
+      overflow: auto;
 
       #product-list {
-        min-height: 320px;
+        height: 318px !important;
         //list-style-type: none;
+        overflow: auto;
+
         li {
+          padding-left: 30px;
           margin-left: -40px;
-          text-align: center;
+          text-align: left;
           text-decoration: none;
           letter-spacing: 3px;
         }
@@ -114,8 +145,12 @@ header {
       margin: 30px 15px;
     }
 
+    #remove-this {
+      width: 200px;
+    }
+
     .checkout-box {
-      margin: 15px 15px 40px;
+      margin: 35px 15px 40px;
 
       a {
         color: #000;
@@ -135,7 +170,7 @@ header {
       padding-bottom: 30px;
       width: 100%;
       height: auto;
-      border: 1px solid black;
+      border-top: 1px solid black;
       margin: 0 auto;
       text-align: center;
       background: #e2e2e2;
@@ -157,8 +192,23 @@ header {
       color: #000;
     }
 
+    a,
     input {
       border: none;
+    }
+
+    #toCart {
+      width: 40px;
+      height: 35px;
+      padding: 5px;
+      margin-left: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 5px gray;
+      cursor: pointer;
+      background-color: #fff;
+      outline-style: none;
+      font-size: 21px;
+      border-radius: 5px;
     }
 
     .keys {
@@ -172,11 +222,6 @@ header {
       outline-style: none;
       font-size: 17px;
       border-radius: 5px;
-    }
-
-    #key-zero {
-      width: 95px;
-      margin-left: 6px;
     }
 
     #key-result {
@@ -230,18 +275,24 @@ footer {
   }
 }
 
-#contact_info {
-  border: none;
-  font-size: 16px;
-  text-align: center;
+#contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  th {
-    font-weight: bold;
-    padding: 10px;
-  }
+  #contact_info {
+    border: none;
+    font-size: 16px;
+    text-align: center;
 
-  td {
-    padding: 10px;
+    th {
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    td {
+      padding: 10px;
+    }
   }
 }
 

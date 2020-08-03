@@ -1,17 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.6.6deb4+deb9u1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Erstellungszeit: 01. Jul 2020 um 23:15
--- Server-Version: 5.7.26
--- PHP-Version: 7.3.8
+-- Host: localhost:3306
+-- Erstellungszeit: 19. Jul 2020 um 14:57
+-- Server-Version: 5.6.29-1~dotdeb+7.1
+-- PHP-Version: 7.0.33-0+deb9u8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Datenbank: `cashbox`
+-- Datenbank: `cacf23_1`
 --
 
 -- --------------------------------------------------------
@@ -41,9 +47,9 @@ INSERT INTO `product` (`id`, `name`, `category`, `price`, `discount`) VALUES
 (6, 'Gutsherrenbrot (1000g)', 1, '2.90', NULL),
 (7, 'Kosakenbrot (750g)', 1, '2.80', NULL),
 (8, 'Holzluckenbrot (750g)', 1, '2.60', NULL),
-(9, 'Rheinländer (750g)', 1, '2.70', NULL),
+(9, 'Rheinlaender (750g)', 1, '2.70', NULL),
 (10, 'Kraftkorn (500g)', 1, '2.10', NULL),
-(11, 'Milchbrötchen', 2, '0.55', NULL),
+(11, 'Milchbroetchen', 2, '0.55', NULL),
 (12, 'Sesamweck', 2, '0.45', NULL),
 (13, 'Kernige Franzose', 2, '0.60', NULL),
 (14, 'Laugenstangen', 2, '0.65', NULL),
@@ -51,9 +57,9 @@ INSERT INTO `product` (`id`, `name`, `category`, `price`, `discount`) VALUES
 (16, 'Puddingknoten', 3, '1.05', NULL),
 (17, 'Schockoschnecke', 3, '1.05', NULL),
 (18, 'Einback', 3, '0.85', NULL),
-(19, 'Schockobrötchen', 3, '0.90', NULL),
-(20, 'Rosinenbrötchen', 3, '0.90', NULL),
-(21, 'Plunder-Nußstange', 3, '1.15', NULL),
+(19, 'Schockobroetchen', 3, '0.90', NULL),
+(20, 'Rosinenbroetchen', 3, '0.90', NULL),
+(21, 'Plunder-Nussstange', 3, '1.15', NULL),
 (22, 'Plunder-Pudding', 3, '1.15', NULL),
 (23, 'Plunder-Kirschtasche', 3, '1.10', NULL),
 (24, 'Plunder-Apfeltasche', 3, '1.10', NULL),
@@ -61,13 +67,13 @@ INSERT INTO `product` (`id`, `name`, `category`, `price`, `discount`) VALUES
 (26, 'Nougat-Crossaint', 3, '1.15', NULL),
 (27, 'Butter-Hefekranz', 4, '9.10', NULL),
 (28, 'Butter-Zopf o.G. klein', 4, '2.45', NULL),
-(29, 'Butter-Zopf o.G. groß', 4, '4.55', NULL),
+(29, 'Butter-Zopf o.G. gross', 4, '4.55', NULL),
 (30, 'Nuss-Zopf', 4, '5.58', NULL),
 (31, 'Marzipan-Zopf', 4, '5.58', NULL),
-(32, 'Käsekuchen', 4, '6.10', NULL),
+(32, 'Kaesekuchen', 4, '6.10', NULL),
 (33, 'Schockokuchen', 4, '7.10', NULL),
 (34, 'Kaffee to-go (klein)', 5, '1.05', NULL),
-(35, 'Kaffee to-go (groß)', 5, '1.25', NULL),
+(35, 'Kaffee to-go (gross)', 5, '1.25', NULL),
 (36, 'Tee to-go (klein)', 5, '0.85', NULL);
 
 -- --------------------------------------------------------
@@ -88,9 +94,9 @@ CREATE TABLE `productcategory` (
 INSERT INTO `productcategory` (`id`, `name`) VALUES
 (1, 'Brot'),
 (2, 'Weck'),
-(3, 'Stückchen'),
+(3, 'Stueckchen'),
 (4, 'Kuchen'),
-(5, 'Getränke');
+(5, 'Getraenke');
 
 -- --------------------------------------------------------
 
@@ -112,8 +118,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `firstname`, `lastname`, `password`) VALUES
 (1, 'admin1', 'Cedrick', 'Candia', '$2y$10$.gH/.rGxQEXvHlK5uTy2S.EFwnsh.WnIu4k1UAoxbvgFov/cJlfT2'),
-(2, 'admin2', 'Jeremy', 'Fuchs', '$2y$10$.gH/.rGxQEXvHlK5uTy2S.EFwnsh.WnIu4k1UAoxbvgFov/cJlfT2'),
-(3, 'Max1998', 'Max', 'Muster', '01f09947796058fb4373b18c1297b4f823adfa07a66999d6d1f2a91d99ebb37d');
+(2, 'admin2', 'Jeremy', 'Fuchs', '$2y$10$.gH/.rGxQEXvHlK5uTy2S.EFwnsh.WnIu4k1UAoxbvgFov/cJlfT2');
 
 --
 -- Indizes der exportierten Tabellen
@@ -146,15 +151,16 @@ ALTER TABLE `user`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT für Tabelle `productcategory`
 --
 ALTER TABLE `productcategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

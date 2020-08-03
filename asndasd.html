@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang='de' dir='ltr'>
+
+<head>
+  <meta charset='utf-8' />
+  <title>bill</title>
+</head>
+
+<body style='text-align:center;'>
+  <p>Rechnung vom <span id='date'></span>
+    <script>
+      var today = new Date();
+      document.getElementById('date').innerHTML = today;
+    </script>
+  </p>
+  <ul id='createdBill' style='list-style-type:none;'>" + sessionStorage.getItem('copyCartContent') + "</ul><br></br>
+  <p>Gesamt: <span id='result'></span>
+    <script>
+      document.getElementById('date').innerHTML = sessionStorage.getItem('result');
+    </script>
+  </p><br></br><button onclick='window.print()' style='background-color:#dddada;color: #000;text-align: center;text-decoration: none;padding: 10px;'>Rechnung drucken</button>
+</body>
+
+</html>
